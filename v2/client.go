@@ -65,6 +65,9 @@ type SideEffectType string
 // FuturesTransferType define futures transfer type
 type FuturesTransferType int
 
+// TransactionType define transaction type
+type TransactionType string
+
 // Endpoints
 const (
 	baseAPIMainURL    = "https://api.binance.us"
@@ -147,6 +150,11 @@ const (
 	SideEffectTypeNoSideEffect SideEffectType = "NO_SIDE_EFFECT"
 	SideEffectTypeMarginBuy    SideEffectType = "MARGIN_BUY"
 	SideEffectTypeAutoRepay    SideEffectType = "AUTO_REPAY"
+
+	TransactionTypeDeposit  TransactionType = "0"
+	TransactionTypeWithdraw TransactionType = "1"
+	TransactionTypeBuy      TransactionType = "0"
+	TransactionTypeSell     TransactionType = "1"
 
 	timestampKey  = "timestamp"
 	signatureKey  = "signature"
@@ -413,6 +421,11 @@ func (c *Client) NewListOpenOrdersService() *ListOpenOrdersService {
 	return &ListOpenOrdersService{c: c}
 }
 
+// NewListOpenOcoService init list open oco service
+func (c *Client) NewListOpenOcoService() *ListOpenOcoService {
+	return &ListOpenOcoService{c: c}
+}
+
 // NewListOrdersService init listing orders service
 func (c *Client) NewListOrdersService() *ListOrdersService {
 	return &ListOrdersService{c: c}
@@ -421,6 +434,11 @@ func (c *Client) NewListOrdersService() *ListOrdersService {
 // NewGetAccountService init getting account service
 func (c *Client) NewGetAccountService() *GetAccountService {
 	return &GetAccountService{c: c}
+}
+
+// NewGetAPIKeyPermission init getting API key permission
+func (c *Client) NewGetAPIKeyPermission() *GetAPIKeyPermission {
+	return &GetAPIKeyPermission{c: c}
 }
 
 // NewListSavingsFlexibleProductsService get flexible products list (Savings)
@@ -531,6 +549,16 @@ func (c *Client) NewCreateMarginOrderService() *CreateMarginOrderService {
 // NewCancelMarginOrderService init cancel order service
 func (c *Client) NewCancelMarginOrderService() *CancelMarginOrderService {
 	return &CancelMarginOrderService{c: c}
+}
+
+// NewCreateMarginOCOService init creating margin order service
+func (c *Client) NewCreateMarginOCOService() *CreateMarginOCOService {
+	return &CreateMarginOCOService{c: c}
+}
+
+// NewCancelMarginOCOService init cancel order service
+func (c *Client) NewCancelMarginOCOService() *CancelMarginOCOService {
+	return &CancelMarginOCOService{c: c}
 }
 
 // NewGetMarginOrderService init get order service
@@ -653,6 +681,11 @@ func (c *Client) NewDustTransferService() *DustTransferService {
 	return &DustTransferService{c: c}
 }
 
+// NewTransferToSubAccountService transfer to subaccount service
+func (c *Client) NewTransferToSubAccountService() *TransferToSubAccountService {
+	return &TransferToSubAccountService{c: c}
+}
+
 // NewAssetDividendService init the asset dividend list service
 func (c *Client) NewAssetDividendService() *AssetDividendService {
 	return &AssetDividendService{c: c}
@@ -663,7 +696,32 @@ func (c *Client) NewUserUniversalTransferService() *CreateUserUniversalTransferS
 	return &CreateUserUniversalTransferService{c: c}
 }
 
+// NewAllCoinsInformation
+func (c *Client) NewGetAllCoinsInfoService() *GetAllCoinsInfoService {
+	return &GetAllCoinsInfoService{c: c}
+}
+
 // NewDustTransferService init Get All Margin Assets service
 func (c *Client) NewGetAllMarginAssetsService() *GetAllMarginAssetsService {
 	return &GetAllMarginAssetsService{c: c}
+}
+
+// NewFiatDepositWithdrawHistoryService init the fiat deposit/withdraw history service
+func (c *Client) NewFiatDepositWithdrawHistoryService() *FiatDepositWithdrawHistoryService {
+	return &FiatDepositWithdrawHistoryService{c: c}
+}
+
+// NewFiatPaymentsHistoryService init the fiat payments history service
+func (c *Client) NewFiatPaymentsHistoryService() *FiatPaymentsHistoryService {
+	return &FiatPaymentsHistoryService{c: c}
+}
+
+// NewFiatPaymentsHistoryService init the spot rebate history service
+func (c *Client) NewSpotRebateHistoryService() *SpotRebateHistoryService {
+	return &SpotRebateHistoryService{c: c}
+}
+
+// NewConvertTradeHistoryService init the convert trade history service
+func (c *Client) NewConvertTradeHistoryService() *ConvertTradeHistoryService {
+	return &ConvertTradeHistoryService{c: c}
 }
